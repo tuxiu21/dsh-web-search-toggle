@@ -1,0 +1,14 @@
+# Bundle patch: mount the search-gate provider and pin it as the selected
+# search backend. Every registered provider stays mounted; only the selected
+# one serves calls, so no ambiguity is possible.
+- insert:
+    - id: web-search-toggle
+      name: dsh-web-search-toggle
+
+- id: web
+  config:
+    searchProvider: web-search-toggle
+    # Repeated deliberately: a patch `config` replaces the entry's config
+    # object, so omitting this would drop the base layer's fetch provider and
+    # make web_fetch fail with WEB_PROVIDER_AMBIGUOUS (deepseek-fetch-api, http).
+    fetchProvider: http

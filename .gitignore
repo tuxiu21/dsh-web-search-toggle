@@ -1,0 +1,4 @@
+node_modules/
+*.bak-*
+profile-package.before.json
+.DS_Store
